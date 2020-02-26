@@ -3,5 +3,101 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  font-family: "Bangers";
+  height: 100vh;
+}
+div#root {
+  font-size: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  background-color: #181818;
+}
+main {
+  width: 90%;
+  max-width: 500px;
+  margin: auto;
+  flex: 1 0 auto;
+}
+/************
+    HEADER 
+*************/
+h1 {
+  color: white;
+  background: red;
+  text-align: center;
+  flex: 0 0 auto;
+  font-size: 1.75rem;
+}
+/************
+    FIELDS 
+*************/
+div#fields {
+  background: blue;
+  display: flex;
+  border: 1px solid #888;
+  border-bottom: none;
+}
 
+input {
+  flex: 1 1 auto;
+  background-color: #181818;
+  padding-left: 0.25rem;
+  color: #aaa;
+  font-family: "Bangers";
+  font-size: 1.15rem;
+  outline: none;
+  border: none;
+}
 
+input::placeholder {
+  color: #aaa;
+}
+
+button {
+  font-family: "Bangers";
+  font-size: 1.15rem;
+  flex: 0 1 auto;
+  outline: none;
+  border: none;
+  border-left: 1px solid #888;
+  color: #181818;
+  background-color: #181818;
+
+  color: #aaa;
+  padding: 0.25rem 0.5rem;
+}
+/************
+    LIST 
+*************/
+li {
+  list-style: none;
+  color: #252525;
+  background: white;
+  border: 5px #888 solid;
+  border-top: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3.3rem;
+}
+
+li:first-of-type {
+  border: 5px #888 solid;
+}
+
+li p {
+  padding-left: 0.5rem;
+}
+
+li div {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+li div i {
+  font-size: 1rem;
+}
