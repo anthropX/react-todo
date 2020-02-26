@@ -5,14 +5,13 @@
 }
 body {
   font-family: "Bangers";
-  height: 100vh;
 }
 div#root {
   font-size: 1.15rem;
   display: flex;
   flex-direction: column;
-  height: inherit;
   background-color: #181818;
+  min-height: 100vh;
 }
 main {
   width: 90%;
@@ -23,12 +22,32 @@ main {
 /************
     HEADER 
 *************/
+
+header {
+  background: red;
+  position: relative;
+}
+
 h1 {
   color: white;
-  background: red;
   text-align: center;
   flex: 0 0 auto;
   font-size: 1.75rem;
+}
+nav {
+  position: absolute;
+  top: 6px;
+  right: 5px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  right: 0;
+}
+a:last-child {
+  margin-left: 0.5rem;
+  margin-right: 0.25rem;
 }
 /************
     FIELDS 
@@ -117,6 +136,7 @@ p#loader {
   color: white;
 }
 
-/* input:checked + p {
-  text-decoration: line-through blue;
-} */
+p#about-desc {
+  margin-top: 0.5rem;
+  color: white;
+}

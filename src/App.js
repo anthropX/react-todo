@@ -1,34 +1,32 @@
 import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import Todos from "./components/Todos";
 import Header from "./components/Header";
 import Fields from "./components/Fields";
 import Loader from "./components/Loader";
-const http = require("./Http");
+import About from "./components/About";
 const todosUrl = "https://jsonplaceholder.typicode.com/todos";
-
+const axios = require("axios");
+let loader;
 class App extends React.Component {
   state = {
     todos: []
   };
 
   componentDidMount() {
-    http
+    loader = document.querySelector("#loader");
+    axios
       .get(`${todosUrl}?_limit=5`)
-      .then(res => {
-        this.setState({ todos: res.data });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      .then(res => this.setState({ todos: res.data }))
+      .catch(err => console.log(err));
   }
 
   addToDo = e => {
-    const loader = document.querySelector("#loader");
     loader.style.display = "block";
     const input = document.querySelector("input");
     if (input.value !== "") {
-      http
+      axios
         .post(todosUrl, {
           userId: 1,
           title: input.value,
@@ -40,9 +38,7 @@ class App extends React.Component {
           });
           loader.style.display = "none";
         })
-        .catch(err => {
-          console.log(err);
-        });
+        .catch(err => console.log(err));
     }
   };
 
@@ -57,27 +53,46 @@ class App extends React.Component {
   };
 
   deleteTodo = e => {
+    loader.style.display = "block";
     let ele =
       e.target.className === "far fa-trash-alt"
         ? e.target.parentElement.parentElement
         : e.target.parentElement;
-    this.setState({
-      todos: this.state.todos.filter(todo => !(Number(ele.id) === todo.id))
-    });
+    console.log(`${todosUrl}/${ele.id}`);
+    axios
+      .delete(`${todosUrl}/${ele.id}`)
+      .then(res => {
+        this.setState({
+          todos: this.state.todos.filter(todo => !(Number(ele.id) === todo.id))
+        });
+        loader.style.display = "none";
+      })
+      .catch(err => console.log(err));
   };
 
   render() {
     return (
-      <main>
-        <Header />
-        <Fields addToDo={this.addToDo} />
-        <Todos
-          todos={this.state.todos}
-          deleteTodo={this.deleteTodo}
-          changeCompleted={this.changeCompleted}
-        />
-        <Loader />
-      </main>
+      <Router>
+        <main>
+          <Header />
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <React.Fragment>
+                <Fields addToDo={this.addToDo} />
+                <Todos
+                  todos={this.state.todos}
+                  deleteTodo={this.deleteTodo}
+                  changeCompleted={this.changeCompleted}
+                />
+                <Loader />
+              </React.Fragment>
+            )}
+          />
+          <Route path="/about" component={About} />
+        </main>
+      </Router>
     );
   }
 }
