@@ -4,7 +4,6 @@ import Todos from "./components/Todos";
 import Header from "./components/Header";
 import Fields from "./components/Fields";
 const http = require("./Http");
-const uuid = require("uuid");
 
 class App extends React.Component {
   state = {
@@ -13,7 +12,7 @@ class App extends React.Component {
 
   componentDidMount() {
     http
-      .get("https://jsonplaceholder.typicode.com/todos?_limit=3")
+      .get("https://jsonplaceholder.typicode.com/todos?_limit=5")
       .then(res => {
         this.setState({ todos: res.data });
       })
@@ -29,6 +28,18 @@ class App extends React.Component {
         todos: [...this.state.todos, { title: input.value, completed: false }]
       });
     }
+  };
+
+  changeCompleted = e => {
+    this.setState({
+      todos: [
+        ...this.state.todos.map(todo => {
+          if (Number(e.target.parentElement.parentElement.id) === todo.id)
+            todo.completed = e.target.checked;
+          return todo;
+        })
+      ]
+    });
   };
 
   deleteTodo = e => {
@@ -48,7 +59,11 @@ class App extends React.Component {
       <main>
         <Header />
         <Fields addToDo={this.addToDo} />
-        <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} />
+        <Todos
+          todos={this.state.todos}
+          deleteTodo={this.deleteTodo}
+          changeCompleted={this.changeCompleted}
+        />
       </main>
     );
   }

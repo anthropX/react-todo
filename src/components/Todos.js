@@ -11,6 +11,7 @@ class Todos extends React.Component {
               key={todo.id}
               todo={todo}
               deleteTodo={this.props.deleteTodo}
+              changeCompleted={this.props.changeCompleted}
             />
           );
         })}

@@ -37,7 +37,6 @@ div#fields {
   background: blue;
   display: flex;
   border: 1px solid #888;
-  border-bottom: none;
 }
 
 input {
@@ -91,7 +90,7 @@ li p {
   padding-left: 0.5rem;
 }
 
-li div {
+li > div {
   height: inherit;
   display: flex;
   align-items: center;
@@ -101,3 +100,7 @@ li div {
 li div i {
   font-size: 1rem;
 }
+
+/* input:checked + p {
+  text-decoration: line-through blue;
+} */
