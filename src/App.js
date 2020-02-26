@@ -8,24 +8,19 @@ const uuid = require("uuid");
 
 class App extends React.Component {
   state = {
-    todos: [
-      {
-        id: uuid.v4(),
-        title: "Complete React crash course",
-        completed: true
-      },
-      {
-        id: uuid.v4(),
-        title: "Continue with the MERN course",
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: "Find a job",
-        completed: true
-      }
-    ]
+    todos: []
   };
+
+  componentDidMount() {
+    http
+      .get("https://jsonplaceholder.typicode.com/todos?_limit=3")
+      .then(res => {
+        this.setState({ todos: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
   addToDo = e => {
     const input = document.querySelector("input");
