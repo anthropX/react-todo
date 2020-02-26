@@ -39,7 +39,7 @@ div#fields {
   border: 1px solid #888;
 }
 
-input {
+input[type="text"] {
   flex: 1 1 auto;
   background-color: #181818;
   padding-left: 0.25rem;
@@ -48,9 +48,10 @@ input {
   font-size: 1.15rem;
   outline: none;
   border: none;
+  cursor: text;
 }
 
-input::placeholder {
+input[type="text"]::placeholder {
   color: #aaa;
 }
 
@@ -63,7 +64,7 @@ button {
   border-left: 1px solid #888;
   color: #181818;
   background-color: #181818;
-
+  cursor: pointer;
   color: #aaa;
   padding: 0.25rem 0.5rem;
 }
@@ -86,6 +87,10 @@ li:first-of-type {
   border: 5px #888 solid;
 }
 
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
 li p {
   padding-left: 0.5rem;
 }
@@ -95,6 +100,10 @@ li > div {
   display: flex;
   align-items: center;
   padding: 0 0.5rem;
+}
+
+li div.trashcan {
+  cursor: pointer;
 }
 
 li div i {
@@ -107,6 +116,7 @@ p#loader {
   margin-top: 0.5rem;
   color: white;
 }
+
 /* input:checked + p {
   text-decoration: line-through blue;
 } */
