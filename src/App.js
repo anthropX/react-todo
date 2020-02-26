@@ -48,13 +48,11 @@ class App extends React.Component {
 
   changeCompleted = e => {
     this.setState({
-      todos: [
-        ...this.state.todos.map(todo => {
-          if (Number(e.target.parentElement.parentElement.id) === todo.id)
-            todo.completed = e.target.checked;
-          return todo;
-        })
-      ]
+      todos: this.state.todos.map(todo => {
+        if (Number(e.target.parentElement.parentElement.id) === todo.id)
+          todo.completed = e.target.checked;
+        return todo;
+      })
     });
   };
 
@@ -64,11 +62,7 @@ class App extends React.Component {
         ? e.target.parentElement.parentElement
         : e.target.parentElement;
     this.setState({
-      todos: [
-        ...this.state.todos.filter(todo => {
-          return !(Number(ele.id) === todo.id);
-        })
-      ]
+      todos: this.state.todos.filter(todo => !(Number(ele.id) === todo.id))
     });
   };
 
