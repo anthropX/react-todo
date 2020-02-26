@@ -2,7 +2,7 @@ import React from "react";
 import Todo from "./Todo";
 import PropTypes from "prop-types";
 
-class Todos extends React.Component {
+export default class Todos extends React.Component {
   render() {
     const { todos, deleteTodo, changeCompleted } = this.props;
     return (
@@ -28,5 +28,3 @@ Todos.propTypes = {
   deleteTodo: PropTypes.func.isRequired,
   changeCompleted: PropTypes.func.isRequired
 };
-
-export default Todos;

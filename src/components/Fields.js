@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 
-class Fields extends React.Component {
+export default class Fields extends React.Component {
   render() {
     return (
       <div id="fields">
@@ -20,5 +20,3 @@ class Fields extends React.Component {
 Fields.propTypes = {
   addToDo: propTypes.func.isRequired
 };
-
-export default Fields;
