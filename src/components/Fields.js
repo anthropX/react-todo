@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 
 class Fields extends React.Component {
   render() {
@@ -15,5 +16,9 @@ class Fields extends React.Component {
     );
   }
 }
+
+Fields.propTypes = {
+  addToDo: propTypes.func.isRequired
+};
 
 export default Fields;
