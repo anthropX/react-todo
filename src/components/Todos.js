@@ -4,15 +4,16 @@ import PropTypes from "prop-types";
 
 class Todos extends React.Component {
   render() {
+    const { todos, deleteTodo, changeCompleted } = this.props;
     return (
       <ul>
-        {this.props.todos.map(todo => {
+        {todos.map(todo => {
           return (
             <Todo
               key={todo.id}
               todo={todo}
-              deleteTodo={this.props.deleteTodo}
-              changeCompleted={this.props.changeCompleted}
+              deleteTodo={deleteTodo}
+              changeCompleted={changeCompleted}
             />
           );
         })}

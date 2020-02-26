@@ -3,21 +3,19 @@ import PropTypes from "prop-types";
 
 class Todo extends React.Component {
   render() {
+    const { todo, deleteTodo, changeCompleted } = this.props;
+    const { id, title, completed } = todo;
     return (
-      <li id={this.props.todo.id} className="todo">
+      <li id={id} className="todo">
         <div>
-          {this.props.todo.completed ? (
-            <input
-              type="checkbox"
-              defaultChecked
-              onChange={this.props.changeCompleted}
-            />
+          {completed ? (
+            <input type="checkbox" defaultChecked onChange={changeCompleted} />
           ) : (
-            <input type="checkbox" onChange={this.props.changeCompleted} />
+            <input type="checkbox" onChange={changeCompleted} />
           )}
-          <p>{this.props.todo.title}</p>
+          <p>{title}</p>
         </div>
-        <div className="trashcan" onClick={this.props.deleteTodo}>
+        <div className="trashcan" onClick={deleteTodo}>
           <i className="far fa-trash-alt"></i>
         </div>
       </li>
