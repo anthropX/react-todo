@@ -4,6 +4,7 @@ import Todos from "./components/Todos";
 import Header from "./components/Header";
 import Fields from "./components/Fields";
 const http = require("./Http");
+const todosUrl = "https://jsonplaceholder.typicode.com/todos";
 
 class App extends React.Component {
   state = {
@@ -12,7 +13,7 @@ class App extends React.Component {
 
   componentDidMount() {
     http
-      .get("https://jsonplaceholder.typicode.com/todos?_limit=5")
+      .get(`${todosUrl}?_limit=5`)
       .then(res => {
         this.setState({ todos: res.data });
       })
@@ -24,9 +25,20 @@ class App extends React.Component {
   addToDo = e => {
     const input = document.querySelector("input");
     if (input.value !== "") {
-      this.setState({
-        todos: [...this.state.todos, { title: input.value, completed: false }]
-      });
+      http
+        .post(todosUrl, {
+          userId: 1,
+          title: input.value,
+          completed: false
+        })
+        .then(res => {
+          this.setState({
+            todos: [...this.state.todos, res.data]
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   };
 
