@@ -101,6 +101,12 @@ li div i {
   font-size: 1rem;
 }
 
+p#loader {
+  display: none;
+  font: initial;
+  margin-top: 0.5rem;
+  color: white;
+}
 /* input:checked + p {
   text-decoration: line-through blue;
 } */

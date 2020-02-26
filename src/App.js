@@ -3,6 +3,7 @@ import "./App.css";
 import Todos from "./components/Todos";
 import Header from "./components/Header";
 import Fields from "./components/Fields";
+import Loader from "./components/Loader";
 const http = require("./Http");
 const todosUrl = "https://jsonplaceholder.typicode.com/todos";
 
@@ -23,6 +24,8 @@ class App extends React.Component {
   }
 
   addToDo = e => {
+    const loader = document.querySelector("#loader");
+    loader.style.display = "block";
     const input = document.querySelector("input");
     if (input.value !== "") {
       http
@@ -35,6 +38,7 @@ class App extends React.Component {
           this.setState({
             todos: [...this.state.todos, res.data]
           });
+          loader.style.display = "none";
         })
         .catch(err => {
           console.log(err);
@@ -61,7 +65,9 @@ class App extends React.Component {
         : e.target.parentElement;
     this.setState({
       todos: [
-        ...this.state.todos.filter(todo => (ele.id === todo.id ? false : true))
+        ...this.state.todos.filter(todo => {
+          return !(Number(ele.id) === todo.id);
+        })
       ]
     });
   };
@@ -76,6 +82,7 @@ class App extends React.Component {
           deleteTodo={this.deleteTodo}
           changeCompleted={this.changeCompleted}
         />
+        <Loader />
       </main>
     );
   }
